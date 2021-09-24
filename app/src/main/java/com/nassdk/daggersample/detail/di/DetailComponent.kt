@@ -2,11 +2,15 @@ package com.nassdk.daggersample.detail.di
 
 import com.nassdk.daggersample.AppComponent
 import com.nassdk.daggersample.common.di.scope.ScreenScope
-import com.nassdk.daggersample.detail.DetailActivity
+import com.nassdk.daggersample.common.di.vm.ViewModelModule
+import com.nassdk.daggersample.detail.DetailFragment
 import dagger.Component
 
-@Component(modules = [DetailModule::class], dependencies = [AppComponent::class])
+@Component(
+    modules = [DetailModule::class, ViewModelModule::class],
+    dependencies = [AppComponent::class]
+)
 @ScreenScope
 interface DetailComponent {
-    fun inject(activity: DetailActivity)
+    fun inject(fragment: DetailFragment)
 }

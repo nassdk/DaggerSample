@@ -51,7 +51,7 @@ object NetworkModule {
     fun provideRetrofitV2(): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl("https://www.google/v2")
+            .baseUrl("https://www.google/v2/")
             .build()
     }
 }

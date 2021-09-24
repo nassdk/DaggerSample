@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DaggerSample">
         <activity
-            android:name=".detail.DetailActivity"
+            android:name=".detail.DetailFragment"
             android:exported="true" />
         <activity
-            android:name=".main.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

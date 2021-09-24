@@ -2,11 +2,15 @@ package com.nassdk.daggersample.main.di
 
 import com.nassdk.daggersample.AppComponent
 import com.nassdk.daggersample.common.di.scope.ScreenScope
-import com.nassdk.daggersample.main.MainActivity
+import com.nassdk.daggersample.common.di.vm.ViewModelModule
+import com.nassdk.daggersample.main.MainFragment
 import dagger.Component
 
 @ScreenScope
-@Component(modules = [MainModule::class], dependencies = [AppComponent::class])
+@Component(
+    modules = [MainModule::class/*, ViewModelModule::class*/],
+    dependencies = [AppComponent::class]
+)
 interface MainComponent {
-    fun inject(activity: MainActivity)
+    fun inject(fragment: MainFragment)
 }
