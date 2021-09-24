@@ -1,56 +1,58 @@
 package com.nassdk.daggersample
 
 import android.content.Context
-import com.nassdk.daggersample.common.network.ApiService
-import dagger.BindsInstance
-import dagger.Component
-import dagger.Module
-import dagger.Provides
+import dagger.*
 import retrofit2.Retrofit
-import retrofit2.create
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, NetworkModule::class])
 interface AppComponent {
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun context(context: Context): Builder
-
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): AppComponent
     }
+
+    fun exposeContext(): Context
+    fun exposeRetrofit(): Retrofit
+
+    //    @Component.Builder
+//    interface Builder {
+//
+//        @BindsInstance
+//        fun context(context: Context): Builder
+//
+//        fun build(): AppComponent
+//    }
 }
 
 
-@Module(includes = [NetworkModule::class])
+@Module
 class AppModule
 
 @Module
-class NetworkModule {
+object NetworkModule {
+
+//    @Provides
+//    @ApiV1
+//    fun provideRetrofitV1(): ApiService {
+//
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://www.google/v1")
+//            .build()
+//
+//        return retrofit.create()
+//    }
 
     @Provides
-    @ApiV1
-    fun provideRetrofitV1(): ApiService {
+    @Reusable
+    fun provideRetrofitV2(): Retrofit {
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.google/v1")
-            .build()
-
-        return retrofit.create()
-    }
-
-    @Provides
-    fun provideRetrofitV2(): ApiService {
-
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl("https://www.google/v2")
             .build()
-
-        return retrofit.create()
     }
 }
 

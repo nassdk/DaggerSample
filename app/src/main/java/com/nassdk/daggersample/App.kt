@@ -5,10 +5,15 @@ import android.content.Context
 
 class App : Application() {
 
+//    val appComponent by lazy {
+//        DaggerAppComponent.builder()
+//            .context(applicationContext)
+//            .build()
+//    }
+
     val appComponent by lazy {
-        DaggerAppComponent.builder()
-            .context(applicationContext)
-            .build()
+        DaggerAppComponent.factory()
+            .create(context = applicationContext)
     }
 }
 

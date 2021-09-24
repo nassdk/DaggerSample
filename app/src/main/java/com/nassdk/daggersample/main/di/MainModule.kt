@@ -1,13 +1,25 @@
 package com.nassdk.daggersample.main.di
 
-import com.nassdk.daggersample.main.data.network.Repository
-import com.nassdk.daggersample.main.data.network.RepositoryImpl
+import com.nassdk.daggersample.main.data.network.ApiServiceMain
+import com.nassdk.daggersample.main.data.network.RepositoryMain
+import com.nassdk.daggersample.main.data.network.RepositoryMainImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import dagger.Reusable
+import retrofit2.Retrofit
+import retrofit2.create
 
 @Module
-interface MainModule {
+abstract class MainModule {
 
     @Binds
-    fun bindRepository(impl: RepositoryImpl): Repository
+    @Reusable
+    abstract fun bindRepository(impl: RepositoryMainImpl): RepositoryMain
+
+    companion object {
+        @Provides
+        @Reusable
+        fun provideRestApi(retrofit: Retrofit): ApiServiceMain = retrofit.create()
+    }
 }

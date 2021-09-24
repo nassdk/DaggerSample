@@ -8,12 +8,5 @@ import dagger.Component
 @ScreenScope
 @Component(modules = [MainModule::class], dependencies = [AppComponent::class])
 interface MainComponent {
-
     fun inject(activity: MainActivity)
-
-    @Component.Builder
-    interface Builder {
-
-        fun build(): MainComponent
-    }
 }

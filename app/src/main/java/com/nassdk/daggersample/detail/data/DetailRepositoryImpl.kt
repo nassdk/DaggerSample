@@ -1,9 +1,8 @@
 package com.nassdk.daggersample.detail.data
 
-import com.nassdk.daggersample.ApiV1
-import com.nassdk.daggersample.common.network.ApiService
+import com.nassdk.daggersample.detail.di.ApiServiceDetail
 import javax.inject.Inject
 
 class DetailRepositoryImpl @Inject constructor(
-    @ApiV1 val service: ApiService
+    val service: ApiServiceDetail
 ) : DetailRepository
