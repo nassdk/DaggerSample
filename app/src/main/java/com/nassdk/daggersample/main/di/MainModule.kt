@@ -1,6 +1,7 @@
 package com.nassdk.daggersample.main.di
 
 import androidx.lifecycle.ViewModel
+import com.nassdk.daggersample.common.di.scope.ScreenScope
 import com.nassdk.daggersample.common.di.vm.ViewModelModule
 import com.nassdk.daggersample.main.data.network.ApiServiceMain
 import com.nassdk.daggersample.main.data.network.RepositoryMain
@@ -17,12 +18,12 @@ import retrofit2.create
 abstract class MainModule {
 
     @Binds
-    @Reusable
+    @ScreenScope
     abstract fun bindRepository(impl: RepositoryMainImpl): RepositoryMain
 
     companion object {
         @Provides
-        @Reusable
+        @ScreenScope
         fun provideRestApi(retrofit: Retrofit): ApiServiceMain = retrofit.create()
     }
 }

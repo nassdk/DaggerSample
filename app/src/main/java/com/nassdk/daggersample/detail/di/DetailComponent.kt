@@ -6,11 +6,11 @@ import com.nassdk.daggersample.common.di.vm.ViewModelModule
 import com.nassdk.daggersample.detail.DetailFragment
 import dagger.Component
 
+@ScreenScope
 @Component(
     modules = [DetailModule::class, ViewModelModule::class],
     dependencies = [AppComponent::class]
 )
-@ScreenScope
 interface DetailComponent {
     fun inject(fragment: DetailFragment)
 }
